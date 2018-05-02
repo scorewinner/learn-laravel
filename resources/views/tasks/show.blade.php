@@ -5,5 +5,6 @@
 </head>
 <body>
 	<h1>{{ $task->body }}</h1>
+	<a href="/tasks"><= back</a>
 </body>
 </html>
