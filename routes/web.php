@@ -11,18 +11,12 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/tasks', function () {
+    $tasks = DB::table('tasks')->latest()->get();
+    return view('tasks.index', compact('tasks'));
+});
 
-     $apprentices = [
-        'Tim',
-        'Gian',
-        'Matteo',
-        'Rami',
-        'Kalle',
-        'Sina'
-
-    ];
-    return view('welcome',
-        compact('apprentices')
-);
+Route::get('/tasks/{task}', function($id){
+    $task = DB::table('tasks')->find($id);
+    return view('tasks.show', compact('task'));
 });
