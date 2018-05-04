@@ -22,8 +22,7 @@
             </ul>
         </div>
         <hr>
-        <div class="card">
-            <div class="card-block">
+        <div class="">
                 <form method="POST" action="/posts/{{ $post->id }}/comments">
 
                     {{ csrf_field() }}
@@ -36,7 +35,6 @@
                     </div>
                 </form>
                 @include('layouts.errors')
-            </div>
         </div>
     </div>
 @endsection

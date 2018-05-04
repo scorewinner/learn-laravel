@@ -5,6 +5,5 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Model extends Eloquent
 {
-    //protected $guarded = [];
-    protected $fillable = ['body'];
+    protected $guarded = [];
 }
