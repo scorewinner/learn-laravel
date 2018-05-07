@@ -14,7 +14,7 @@
             @foreach($post->comments as $comment)
                 <li class="list-group-item">
                     <strong>
-                        {{ $comment->created_at->diffForHumans() }} by {{ $post->user->name }}:
+                        {{ $comment->created_at->diffForHumans() }} by {{ $comment->user->name }}:
                     </strong>
                     {{ $comment->body }}
                 </li>
@@ -23,18 +23,28 @@
         </div>
         <hr>
         <div class="">
-                <form method="POST" action="/posts/{{ $post->id }}/comments">
+            @guest
+                <div class="form-group">
+                    <textarea readonly name="body" placeholder="Sign in to write comments!" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary disabled">Add comment</button>
+                </div>
+            @else
 
-                    {{ csrf_field() }}
+                    <form method="POST" action="/posts/{{ $post->id }}/comments">
 
-                    <div class="form-group">
-                        <textarea name="body" placeholder="Your comment here" class="form-control" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Add comment</button>
-                    </div>
-                </form>
-                @include('layouts.errors')
+                        {{ csrf_field() }}
+
+                        <div class="form-group">
+                            <textarea name="body" placeholder="Your comment here" class="form-control" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Add comment</button>
+                        </div>
+                    </form>
+                    @include('layouts.errors')
+            @endguest
         </div>
     </div>
 @endsection
